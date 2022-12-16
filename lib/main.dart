@@ -5,84 +5,82 @@ void main() {
 }
 
 class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+  MyWidget({super.key});
 
   @override
   State<MyWidget> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  int index = 0;
-  List<String> paths = [
-    'images/pexels-arunodhai-v-568948.jpg',
-    'images/pexels-mohamed-almari-1591382.jpg',
-    'images/pexels-rahul-pandit-1212487.jpg',
-    'images/pexels-roberto-nickson-2486168.jpg',
-    'images/pexels-tausif-hossain-1226302.jpg',
-  ];
+  Widget a = Container(
+    color: Colors.blue,
+    height: 100,
+    width: 100,
+  );
+  Widget b = Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Container(
+        color: Colors.blue,
+        height: 100,
+        width: 100,
+      ),
+      Container(
+        color: Colors.blue,
+        height: 100,
+        width: 100,
+      )
+    ],
+  );
+  Widget c = Container(
+    color: Colors.blue,
+    height: 100,
+    width: 100,
+  );
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              color: Colors.yellow,
-              height: 700,
-              //alignment: Alignment.center,
-              child: Image.asset(
-                paths[index % 5],
-                //height: 500,
-                fit: BoxFit.contain,
+          body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            color: Colors.yellow,
+            height: 710,
+            alignment: Alignment.center,
+            child: c,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    c = a;
+                  });
+                },
+                child: Icon(
+                  Icons.list,
+                  size: 50,
+                ),
               ),
-            ),
-            Container(
-              color: Colors.red,
-              height: 70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      if (index > 0)
-                        setState(() {
-                          index--;
-                        });
-                    },
-                    child: Icon(Icons.arrow_back_ios),
-                  ),
-                  Text(index.toString()),
-                  TextButton(
-                    onPressed: () {
-                      if (index < 4)
-                        setState(() {
-                          index++;
-                        });
-                    },
-                    child: Icon(Icons.arrow_forward_ios),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      c = b;
+                    });
+                  },
+                  child: Icon(
+                    Icons.grid_3x3,
+                    size: 50,
+                  ))
+            ],
+          )
+        ],
+      )),
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: implement build
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: Container(),
-//       ),
-//     );
-//   }
-// }
